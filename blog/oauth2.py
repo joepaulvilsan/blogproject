@@ -7,7 +7,7 @@ from typing import Annotated
 from blog.database import get_db
 import blog.models as models
 from blog.schemas import TokenData
-import authtoken
+import blog.authtoken as authtoken
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
