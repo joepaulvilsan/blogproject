@@ -6,7 +6,7 @@ from blog.database import get_db
 from blog.schemas import showBlogPost, BlogPost,user     
 from typing import List
 from blog.repositories.func import getall
-from blog.oauth2 import oauth2
+import blog.oauth2 as oauth2
 
 
 router = APIRouter()
