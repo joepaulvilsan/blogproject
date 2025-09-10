@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
-import models
-from database import engine, get_db
-from routers import user,blog,authentication
+from blog import models
+from blog.database import engine, get_db
+from blog.routers import user,blog,authentication
 from sqlalchemy.orm import Session
 from typing import List
 from passlib.context import CryptContext
