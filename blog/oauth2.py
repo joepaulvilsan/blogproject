@@ -4,9 +4,9 @@ from fastapi.security import OAuth2PasswordBearer
 import jwt
 from jwt import InvalidTokenError
 from typing import Annotated
-from database import get_db
-import models
-from schemas import TokenData
+from blog.database import get_db
+import blog.models as models
+from blog.schemas import TokenData
 import authtoken
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")

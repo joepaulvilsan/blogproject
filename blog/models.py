@@ -1,5 +1,5 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
-from database import Base
+from blog.database import Base
 from sqlalchemy.orm import relationship
 
 class BlogPost(Base):

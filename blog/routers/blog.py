@@ -1,12 +1,12 @@
 from fastapi import APIRouter, status, Response
 from fastapi import Depends
 from sqlalchemy.orm import Session
-import models  
-from database import get_db
-from schemas import showBlogPost, BlogPost,user     
+import blog.models as models 
+from blog.database import get_db
+from blog.schemas import showBlogPost, BlogPost,user     
 from typing import List
-from repositories.func import getall
-import oauth2
+from blog.repositories.func import getall
+from blog.oauth2 import oauth2
 
 
 router = APIRouter()

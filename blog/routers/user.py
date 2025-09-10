@@ -5,11 +5,11 @@
 from fastapi import APIRouter,status
 from fastapi import Depends
 from sqlalchemy.orm import Session
-import models  
-from database import get_db
-from schemas import showUser
+import blog.models as models 
+from blog.database import get_db
+from blog.schemas import showUser
 from typing import List
-from schemas import user
+from blog.schemas import user
 import hashing
 router = APIRouter(
     tags=["Users"]
