@@ -4,7 +4,7 @@ from datetime import timedelta
 from blog.authtoken import create_access_token, ACCESS_TOKEN_EXPIRE_MINUTES
 from blog.database import get_db
 from sqlalchemy.orm import Session
-from blog.models import models
+import blog.models as models
 import blog.hashing as hashing
 from fastapi.security import OAuth2PasswordRequestForm
 
