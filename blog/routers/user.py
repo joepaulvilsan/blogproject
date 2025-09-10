@@ -10,7 +10,7 @@ from blog.database import get_db
 from blog.schemas import showUser
 from typing import List
 from blog.schemas import user
-import hashing
+import blog.hashing as hashing
 router = APIRouter(
     tags=["Users"]
 )
