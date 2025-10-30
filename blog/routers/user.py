@@ -26,7 +26,7 @@ async def create_user(user: user, db: Session = Depends(get_db)):
     hashed_password = hashing.hash_password(user.password)
     new_user = models.User(
         id=user.id,
-        name=user.name,
+        name=user.username,
         email=user.email,
         password=hashed_password  # Store the hashed password
     )
