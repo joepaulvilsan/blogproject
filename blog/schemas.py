@@ -1,5 +1,11 @@
 from pydantic import BaseModel,Field
 from typing import List
+
+class BlogPostCreate(BaseModel):
+    title: str
+    content: str
+    class Config:
+        from_attributes = True
 class BlogPost(BaseModel):
     id: int
     title: str
@@ -12,7 +18,7 @@ class BlogPost(BaseModel):
 
 class user(BaseModel):
     id: int
-    name: str
+    username: str
     email: str
     password: str
 
