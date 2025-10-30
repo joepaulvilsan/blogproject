@@ -7,9 +7,9 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 import blog.models as models 
 from blog.database import get_db
-from blog.schemas import showUser
+from blog.schemas import showUser,BlogPostCreate,showBlogPost
 from typing import List
-from blog.schemas import user, UserCreate as userC
+from blog.schemas import  user,UserCreate as userC
 import blog.hashing as hashing
 router = APIRouter(
     tags=["Users"]

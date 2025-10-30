@@ -3,20 +3,19 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 import blog.models as models 
 from blog.database import get_db
-from blog.schemas import showBlogPost, BlogPost,user     
-from typing import List
+from blog.schemas import showBlogPost, BlogPost, user, BlogPostCreate ,BlogPostUpdate# <-- Add BlogPostCreatefrom typing import List
 from blog.repositories.func import getall
 import blog.oauth2 as oauth2
 
 
 router = APIRouter()
 
-@router.post("/blogpost/", status_code=status.HTTP_201_CREATED)
-async def create_blog_post(blog_post: BlogPost, db: Session = Depends(get_db), current_user: user = Depends(oauth2.get_current_user)):
+@router.post("/blogpost/", status_code=status.HTTP_201_CREATED, response_model=showBlogPost) # Optional: change response model
+async def create_blog_post(blog_post: BlogPostCreate, db: Session = Depends(get_db), current_user: user = Depends(oauth2.get_current_user)): # <-- Use BlogPostCreate
     new_blog_post = models.BlogPost(
         title=blog_post.title,
         content=blog_post.content,
-        id=blog_post.id,  # Assuming id is part of the BlogPost schema
+        # Let the database handle the ID
         userid=current_user.id
     )
     db.add(new_blog_post)
@@ -49,16 +48,17 @@ async def delete_blog_post(blog_post_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Blog post deleted successfully"}
 
-@router.put("/blogpost/{blog_post_id}", status_code=status.HTTP_200_OK)
-async def update_blog_post(blog_post_id: int, blog_post: BlogPost, db: Session = Depends(get_db)):
+@router.put("/blogpost/{blog_post_id}", status_code=status.HTTP_200_OK, response_model=showBlogPost) # Optional: Update response model
+async def update_blog_post(blog_post_id: int, blog_post_update: BlogPostUpdate, db: Session = Depends(get_db)): # <-- Use BlogPostUpdate
     existing_blog_post = db.query(models.BlogPost).filter(models.BlogPost.id == blog_post_id).first()
     if not existing_blog_post:
-        return {"error": "Blog post not found"}
+        # You should raise an HTTPException here instead of returning JSON
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Blog post not found")
     
-    existing_blog_post.title = blog_post.title
-    existing_blog_post.content = blog_post.content
+    # Update only the fields from the BlogPostUpdate schema
+    existing_blog_post.title = blog_post_update.title 
+    existing_blog_post.content = blog_post_update.content
     db.commit()
     db.refresh(existing_blog_post)
     return existing_blog_post
-
 

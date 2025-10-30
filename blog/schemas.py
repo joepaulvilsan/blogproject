@@ -6,6 +6,13 @@ class BlogPostCreate(BaseModel):
     content: str
     class Config:
         from_attributes = True
+
+class BlogPostUpdate(BaseModel):
+    title: str
+    content: str
+    class Config:
+        from_attributes = True
+        
 class BlogPost(BaseModel):
     id: int
     title: str
