@@ -12,7 +12,7 @@ class BlogPostUpdate(BaseModel):
     content: str
     class Config:
         from_attributes = True
-        
+
 class BlogPost(BaseModel):
     id: int
     title: str
@@ -50,11 +50,11 @@ class showUser(BaseModel):
 
 
 class showBlogPost(BaseModel):
+    id: int  # <-- ADD THIS LINE
     title: str
     content: str
     creator: showUser
    
-
     class Config:
         from_attributes = True
 
