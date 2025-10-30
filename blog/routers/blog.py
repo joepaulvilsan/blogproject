@@ -6,7 +6,7 @@ from blog.database import get_db
 from blog.schemas import showBlogPost, BlogPost, user, BlogPostCreate ,BlogPostUpdate# <-- Add BlogPostCreatefrom typing import List
 from blog.repositories.func import getall
 import blog.oauth2 as oauth2
-
+from typing import List
 
 router = APIRouter()
 
