@@ -17,7 +17,7 @@ async def create_blog_post(blog_post: BlogPost, db: Session = Depends(get_db), c
         title=blog_post.title,
         content=blog_post.content,
         id=blog_post.id,  # Assuming id is part of the BlogPost schema
-        userid=1
+        userid=current_user.id
     )
     db.add(new_blog_post)
     db.commit()
